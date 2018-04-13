@@ -34,8 +34,12 @@
 
 - name: copy the supporting files
   copy:
-    src: slapd
+    src: lapd
     dest: /etc/sysconfig/ldap
+    mode: 0755
+  copy:
+    src: slapd_fedora
+    dest: /etc/sysconfig/slapd
     mode: 0755
   when: openldap_server_enable_ssl and ansible_os_family == 'RedHat'
   notify:
@@ -49,6 +53,8 @@
   when: openldap_server_enable_ssl and ansible_os_family == 'Debian'
   notify:
    - restart slapd
+
+- meta: flush_handlers
 
 - name: start the slapd service
   service:
