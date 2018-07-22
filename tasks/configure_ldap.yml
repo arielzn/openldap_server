@@ -34,7 +34,7 @@
 
 - name: copy the supporting files
   copy:
-    src: lapd
+    src: ldap
     dest: /etc/sysconfig/ldap
     mode: 0755
   copy:
