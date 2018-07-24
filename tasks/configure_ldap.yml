@@ -32,11 +32,13 @@
     chdir: "{{ openldap_server_app_path }}/certs/"
     creates: "{{ openldap_server_app_path }}/certs/cert.crt"
 
-- name: copy the supporting files
+- name: Copy ldap supporting files
   copy:
     src: ldap
     dest: /etc/sysconfig/ldap
     mode: 0755
+
+- name: Copy sldapd supporting files
   copy:
     src: slapd_fedora
     dest: /etc/sysconfig/slapd
